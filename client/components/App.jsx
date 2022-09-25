@@ -25,18 +25,13 @@ const App = () => {
     <div className="whole-app">
       <ResponsiveAppBar />
 
-      {/* TO DO - IMPLEMENT ROUTING
-       <Routes>
-        <Route path="/" element={<Home />} />
+      <Routes>
+        <Route path="/" element={!showWorld && <Home fn={aWholeNewWorld} />} />
         <Route path="Profile" element={<Profile />} />
         <Route path="About" element={<About />} />
         <Route path="Credits" element={<Credits />} />
-      </Routes> */}
-      {!showWorld && (
-        <div>
-          <Home fn={aWholeNewWorld} />
-        </div>
-      )}
+      </Routes>
+      
       {showWorld && (
         <World gameStarted={gameStarted} showWorld={setShowWorld} />
         // <Battle />
