@@ -6,7 +6,6 @@ function addTeam(team, db = connection) {
 
 function getTeamHistory(db = connection) {
   return db('teamHistory').select()
-  // return 'test'
 }
 
 function deleteAllTeamHistory(db = connection) {

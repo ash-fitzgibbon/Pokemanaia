@@ -95,7 +95,6 @@ function Battle(props) {
   )
 
   let effective = 1
-  // logic for effectiveness
 
   function calcMultiplyer(attackingType, defendingType) {
     switch (attackingType) {

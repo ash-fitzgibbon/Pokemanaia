@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
-import { Link } from 'react-router-dom'
 import Team from './Team'
 import Pokemon from './Pokemon'
 const clickPop = new Audio('clickConf.mp3')
@@ -22,7 +21,6 @@ export default function Home(props) {
   const [inputText, setInputText] = useState('')
 
   let inputHandler = (e) => {
-    //convert input text to lower case
     var lowerCase = e.target.value.toLowerCase()
     setInputText(lowerCase)
   }
@@ -78,27 +76,21 @@ export default function Home(props) {
     setTeam([])
     themeSongPlay()
   }
-  // function themeSongPlay() {
-  //   var audio = new Audio('themeSong.mp3')
-  //   audio.play()
-  // }
+
   function confirmTeam() {
     if (team.length != 0) {
       dispatch(returnTeam(team))
       mapToggle()
-      // themeSongPlay()
+
       homeTheme.pause()
       console.log(team)
     }
   }
 
   const filteredData = pokeDex.filter((el) => {
-    //if no input the return the original
     if (inputText === '') {
       return el.name
-    }
-    //return the item which contains the user input
-    else {
+    } else {
       return el.name.toLowerCase().includes(inputText)
     }
   })
@@ -135,7 +127,6 @@ export default function Home(props) {
       <div className="selectionGrid">
         <div className="poke-list">
           {filteredData.map((pokemon, element) => (
-            // <li key={item.name + element}>{item.name}</li>
             <div
               className="pokemon"
               key={pokemon.name + element}
