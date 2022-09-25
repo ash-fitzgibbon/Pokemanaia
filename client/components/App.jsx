@@ -24,17 +24,14 @@ const App = () => {
   return (
     <div className="whole-app">
       <ResponsiveAppBar />
+
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={!showWorld && <Home fn={aWholeNewWorld} />} />
         <Route path="Profile" element={<Profile />} />
         <Route path="About" element={<About />} />
         <Route path="Credits" element={<Credits />} />
       </Routes>
-      {!showWorld && (
-        <div>
-          <Home fn={aWholeNewWorld} />
-        </div>
-      )}
+      
       {showWorld && (
         <World gameStarted={gameStarted} showWorld={setShowWorld} />
         // <Battle />
