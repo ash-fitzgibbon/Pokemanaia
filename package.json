@@ -7,16 +7,14 @@
     "fullstack"
   ],
   "scripts": {
-    "start": "node server --openssl-legacy-provider start",
+    "start": "node server",
     "test": "jest",
     "test:watch": "jest --noStackTrace --watchAll",
-    "dev": "run-p dev:client dev:server dev:socket",
+    "dev": "run-p dev:client dev:server",
     "dev:client": "npm run webpack -- --watch",
-    "dev:server": "nodemon --watch server server/index.js server/socket.js",
-    "dev:socket": "nodemon --watch server server/socket.js",
-    "build": "run-p build:client ",
+    "dev:server": "nodemon --watch server server/index.js",
+    "build": "npm run build:client",
     "build:client": "npm run webpack -- --mode production",
-   
     "lint": "eslint --ext .js,.jsx .",
     "webpack": "webpack --config ./client/webpack.config.js"
 

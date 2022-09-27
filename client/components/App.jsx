@@ -7,7 +7,7 @@ import Switch from './Switch'
 import ResponsiveAppBar from './Navbar'
 import { Routes, Route } from 'react-router-dom'
 import Pair from './Pair'
-const port = process.env.PORT || 3000
+// const port = process.env.PORT || 3000
 
 const App = () => {
   const [start, setStart] = useState(true)
