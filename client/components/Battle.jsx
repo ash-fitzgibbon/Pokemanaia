@@ -9,6 +9,7 @@ import { setJoeHp, setJoeAtk, setJoeDef } from '../actions/joseph.js'
 import { setGrdHp, setGrdAtk, setGrdDef } from '../actions/gerard.js'
 import { setRhnHp, setRhnAtk, setRhnDef } from '../actions/rohan.js'
 import { setPokeHp, setMyDef, setMyAtk } from '../actions/myPokemon.js'
+import { style } from '@mui/system'
 const tackle = new Audio('/fightsounds/Tackle.mp3')
 const growl = new Audio('/fightsounds/Growl.mp3')
 const defenseCurl = new Audio('/fightsounds/DefenseCurl.mp3')
@@ -18,9 +19,11 @@ const cry2 = new Audio('/fightsounds/aipom.mp3')
 const cry3 = new Audio('/fightsounds/alomomola.mp3')
 const cry4 = new Audio('/fightsounds/azumarill.mp3')
 const imSad = new Audio('/fightsounds/Sad.mp3')
+const victory = new Audio('/fightsounds/victory.mp3')
 
 function Battle(props) {
-  const fakeProps = 'Joseph'
+  const fakeProps = props.facil
+  const battlesong = props.battlesong
 
   const [oppCount, setOppCount] = useState(0)
   const [myCount, setMyCount] = useState(0)
@@ -337,6 +340,10 @@ function Battle(props) {
   }
 
   function attackOpponent(type, power, opponent) {
+    document.getElementById('tackleBtn').disabled = true
+    document.getElementById('specialBtn').disabled = true
+    document.getElementById('growlBtn').disabled = true
+    document.getElementById('defCurlBtn').disabled = true
     let multiplyer1 = 1
     let multiplyer2 = 1
     if (oppType2) {
@@ -536,15 +543,27 @@ function Battle(props) {
         setFightText(`${myPokemon.name.toUpperCase()} has fainted`)
         document.getElementById('myPokemonImg').style.left = '-400px'
         randomCry()
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     } else if (finalHP > 0) {
       setTimeout(() => {
         setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     }
   }
 
   function lowerOppAtk(target) {
+    document.getElementById('tackleBtn').disabled = true
+    document.getElementById('specialBtn').disabled = true
+    document.getElementById('growlBtn').disabled = true
+    document.getElementById('defCurlBtn').disabled = true
     if (oppPokemon.stats[1].base_stat > 8) {
       growl.volume = 0.4
       growl.currentTime = 0
@@ -595,6 +614,10 @@ function Battle(props) {
   }
 
   function raiseDefense(target) {
+    document.getElementById('tackleBtn').disabled = true
+    document.getElementById('specialBtn').disabled = true
+    document.getElementById('growlBtn').disabled = true
+    document.getElementById('defCurlBtn').disabled = true
     if (myPokemon.stats[2].base_stat < 200) {
       defenseCurl.volume = 0.4
       defenseCurl.currentTime = 0
@@ -634,6 +657,10 @@ function Battle(props) {
     }
     setTimeout(() => {
       setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+      document.getElementById('tackleBtn').disabled = false
+      document.getElementById('specialBtn').disabled = false
+      document.getElementById('growlBtn').disabled = false
+      document.getElementById('defCurlBtn').disabled = false
     }, 1500)
   }
 
@@ -676,6 +703,10 @@ function Battle(props) {
       }, 1250)
       setTimeout(() => {
         setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     }
   }
@@ -686,6 +717,10 @@ function Battle(props) {
       document.getElementById('oppPokemonImg').style.left = '505px'
       setTimeout(() => {
         setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     }, 1500)
   }
@@ -696,6 +731,10 @@ function Battle(props) {
       document.getElementById('myPokemonImg').style.left = '25px'
       setTimeout(() => {
         setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     }, 1500)
   }
@@ -734,7 +773,6 @@ function Battle(props) {
 
   useEffect(() => {
     if (oppHP <= 0) {
-      console.log('they fainted')
       setTimeout(() => {
         setOppCount(oppCount + 1)
       }, 1000)
@@ -745,12 +783,14 @@ function Battle(props) {
         }
       }, 2000)
     } else if (myHP <= 0) {
-      console.log('i fainted')
       setTimeout(() => {
         setMyCount(myCount + 1)
+        document.getElementById('health').style.display = 'none'
+        dispatch(setPokeHp(initMyHP, myPokemon))
       }, 1000)
       setTimeout(() => {
         if (myCount < team - 1) {
+          document.getElementById('health').style.display = 'flex'
           setMyIndex(myIndex + 1)
           nextPokemon()
         }
@@ -761,7 +801,15 @@ function Battle(props) {
 
   useEffect(() => {
     if (oppCount == oppTeam) {
+      document.getElementById('tackleBtn').disabled = true
+      document.getElementById('specialBtn').disabled = true
+      document.getElementById('growlBtn').disabled = true
+      document.getElementById('defCurlBtn').disabled = true
+      victory.currentTime = 0
+      victory.volume = 0.2
       setTimeout(() => {
+        battlesong.pause()
+        victory.play()
         setFightText(`${fakeProps} has been defeated!`)
         setTimeout(() => {
           switch (fakeProps) {
@@ -772,25 +820,25 @@ function Battle(props) {
               imSad.play()
               break
             case 'David':
-              setFightText(`David: `)
+              setFightText(`David: Oh no! Squirtle Squad!`)
               break
             case 'Krissy':
-              setFightText(`Krissy: `)
+              setFightText(`Krissy: It's okay, we're in Redux!`)
               break
             case 'Josh':
               setFightText(`Josh: I'm better at golf anyway...`)
               break
             case 'Sarah':
-              setFightText(`Sarah: At least we had good vibes!`)
+              setFightText(`Sarah: *spirit fingers* Well done team!`)
               break
             case 'Joseph':
               setFightText(`I like shorts, they're comfy and easy to wear!`)
               break
             case 'Gerard':
-              setFightText(`Gerard: `)
+              setFightText(`Gerard: gdi`)
               break
             case 'Rohan':
-              setFightText(`Rohan: `)
+              setFightText(`Rohan: I'd win if this was in Redux Toolkit...`)
               break
             default:
               setFightText(`You won 500 Dev Academy Points`)
@@ -800,10 +848,15 @@ function Battle(props) {
           setFightText(`You won 500 Dev Academy Points`)
         }, 4000)
         setTimeout(() => {
+          victory.pause()
           props.battle(false)
         }, 8000)
       }, 2000)
     } else if (myCount == team) {
+      document.getElementById('tackleBtn').disabled = true
+      document.getElementById('specialBtn').disabled = true
+      document.getElementById('growlBtn').disabled = true
+      document.getElementById('defCurlBtn').disabled = true
       setTimeout(() => {
         setFightText(`You have been defeated...`)
       }, 2000)
@@ -851,7 +904,7 @@ function Battle(props) {
       <div className="battleScreen">
         <div className="pokemonSprites">
           <div className="myHP">
-            <span>
+            <span id="health">
               {myHP > 0 ? myHP : 0} / {initMyHP}
             </span>
           </div>
@@ -903,14 +956,22 @@ function Battle(props) {
           </div>
 
           <div className="fightButtons">
-            <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
+            <button
+              id="tackleBtn"
+              onClick={() => attackOpponent('normal', 70, oppPokemon)}
+            >
               TACKLE
             </button>
-            <button onClick={() => attackOpponent('special', 70, oppPokemon)}>
+            <button
+              id="specialBtn"
+              onClick={() => attackOpponent('special', 70, oppPokemon)}
+            >
               {myType.toUpperCase()} ATTACK
             </button>
-            <button onClick={() => lowerOppAtk(oppPokemon)}>GROWL</button>
-            <button onClick={() => raiseDefense(myPokemon)}>
+            <button id="growlBtn" onClick={() => lowerOppAtk(oppPokemon)}>
+              GROWL
+            </button>
+            <button id="defCurlBtn" onClick={() => raiseDefense(myPokemon)}>
               DEFENSE CURL
             </button>
           </div>

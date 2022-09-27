@@ -4,6 +4,7 @@ import Battle from './Battle'
 var theme = new Audio('themeSong.mp3')
 var battlesong = new Audio('battleTheme.mp3')
 let game = null
+let facilitator
 
 function World() {
   const [battle, setBattle] = useState(false)
@@ -138,80 +139,119 @@ function World() {
       this.physics.add.collider(player, worldLayer)
       this.physics.add.collider(player, aboveLayer)
 
-      function collisionlistener() {
-        console.log('action')
-        // themeSongPause()
-        setBattle(true)
-
-        this.physics.world.removeCollider(testOverlap)
-      }
-
-      function collisionlistener2() {
-        console.log('action')
-        // themeSongPause()
-        setBattle(true)
-
-        this.physics.world.removeCollider(testOverlap2)
-      }
-
       function collisionlistenerSarah() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
+        facilitator = 'Sarah'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapSarah)
       }
 
       function collisionlistenerKrissy() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
+        facilitator = 'Krissy'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapKrissy)
       }
 
       function collisionlistenerJosh() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
+        facilitator = 'Josh'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapJosh)
       }
 
       function collisionlistenerRohan() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
-
+        facilitator = 'Rohan'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         this.physics.world.removeCollider(testOverlapRohan)
       }
 
       function collisionlistenerGerard() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
+        facilitator = 'Gerard'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapGerard)
       }
 
       function collisionlistenerJoseph() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
+        facilitator = 'Joseph'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapJoseph)
       }
       function collisionlistenerDavid() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
+        facilitator = 'David'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapDavid)
       }
       function collisionlistenerJv() {
         console.log('action')
-        // themeSongPause()
-        setBattle(true)
+        facilitator = 'JV'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapJv)
       }
@@ -220,8 +260,6 @@ function World() {
         console.log('overlap')
       })
 
-      const zone = this.add.zone(400, 100).setSize(32, 32)
-      const zone2 = this.add.zone(500, 100).setSize(32, 32)
       const zoneSarah = this.add.zone(1200, 560).setSize(32, 32)
       const zoneKrissy = this.add.zone(1104, 80).setSize(32, 32)
       const zoneJosh = this.add.zone(80, 592).setSize(32, 32)
@@ -231,8 +269,6 @@ function World() {
       const zoneDavid = this.add.zone(464, 1904).setSize(32, 32)
       const zoneJv = this.add.zone(656, 2416).setSize(32, 32)
 
-      this.physics.world.enable(zone)
-      this.physics.world.enable(zone2)
       this.physics.world.enable(zoneSarah)
       this.physics.world.enable(zoneKrissy)
       this.physics.world.enable(zoneJosh)
@@ -241,18 +277,6 @@ function World() {
       this.physics.world.enable(zoneJoseph)
       this.physics.world.enable(zoneDavid)
       this.physics.world.enable(zoneJv)
-
-      const testOverlap = this.physics.add.overlap(
-        player,
-        zone,
-        collisionlistener.bind(this)
-      )
-
-      const testOverlap2 = this.physics.add.overlap(
-        player,
-        zone2,
-        collisionlistener2.bind(this)
-      )
 
       const testOverlapSarah = this.physics.add.overlap(
         player,
@@ -381,7 +405,7 @@ function World() {
     }
 
     function update(time, delta) {
-      const speed = 500
+      const speed = 200
       const prevVelocity = player.body.velocity.clone()
 
       // Stop any previous movement from the last frame
@@ -432,11 +456,20 @@ function World() {
           <div className="batteryLight" />
           <p>BATTERY</p>
         </div>
-        <div
-          id="game-container"
-          style={{ display: battle ? 'none' : null }}
-        ></div>
-        {battle && <Battle battle={setBattle} />}
+        <div id="game-container" style={{ display: battle ? 'none' : null }}>
+          <img
+            id="throwBall"
+            src="/images/image03.gif"
+            alt="a spinning pokeball"
+          />
+        </div>
+        {battle && (
+          <Battle
+            battle={setBattle}
+            facil={facilitator}
+            battlesong={battlesong}
+          />
+        )}
       </div>
       <button onClick={themeSongPlay}>Theme Song Play</button>
       <button onClick={themeSongPause}>Stop</button>
