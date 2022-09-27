@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 import { Link } from 'react-router-dom'
 
-const pages = ['Chat', 'Credits', 'Teams']
+const pages = ['Chat', 'Credits']
 const settings = ['Logout']
 
 const ResponsiveAppBar = () => {

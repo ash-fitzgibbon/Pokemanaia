@@ -31,7 +31,6 @@ const App = () => {
         <ResponsiveAppBar />
         <Routes>
           <Route path="/" element={<Switch />} />
-          <Route path="Teams" element={<TeamHistory />} />
           <Route path="Chat" element={<Profile />} />
           <Route path="Credits" element={<Credits />} />
         </Routes>
