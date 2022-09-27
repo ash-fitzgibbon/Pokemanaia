@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
 import { getAllTeamHistory } from '../apis/apiClient'
 
 export default function TeamHistory() {
-  getAllTeamHistory()
-    .then((teams) => {
-      console.log(teams)
+  const [history, setHistory] = useState([])
+  const [oldTeams, setTeams] = useState([])
+
+  useEffect(() => {
+    getAllTeamHistory()
+      .then((dbTeams) => {
+        console.log(dbTeams)
+        setHistory(dbTeams)
+      })
+      .catch((err) => console.error(err))
+  }, [])
+
+  useEffect(() => {
+    history.map((teamInfo) => {
+      console.log(teamInfo.team)
     })
-    .catch((err) => console.error(err))
+  }, [history])
 
   return (
     <>
