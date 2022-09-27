@@ -34,7 +34,7 @@ body,
   overflow: hidden;
 }
 
-h1 {
+h1, h2 {
   font-family: 'pkmn_rbygscregular';
 }
 
@@ -555,4 +555,14 @@ footer {
 
 #victoryPage {
   display: none;
+}
+
+.creditsList {
+  width: 800px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.creditsList p{
+  line-height: 30px;
 }

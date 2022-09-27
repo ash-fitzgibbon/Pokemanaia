@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 import { Link } from 'react-router-dom'
 
-const pages = ['Chat', 'Credits']
+const pages = ['Credits']
 const settings = ['Logout']
 
 const ResponsiveAppBar = () => {
@@ -138,7 +138,7 @@ const ResponsiveAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton href="/" sx={{ p: 0 }}>
                 <Avatar
                   alt="Pokeball"
                   src="https://www.pngfind.com/pngs/m/278-2786237_pokeball-hd-pokeball-pixel-art-hd-png-download.png"
