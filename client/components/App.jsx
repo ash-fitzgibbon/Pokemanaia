@@ -5,6 +5,7 @@ import Footer from './Footer'
 import Profile from './Profile'
 import Credits from './Credits'
 import Switch from './Switch'
+import TeamHistory from './TeamHistory'
 import ResponsiveAppBar from './Navbar'
 import { Routes, Route } from 'react-router-dom'
 import Pair from './Pair'
@@ -30,7 +31,8 @@ const App = () => {
         <ResponsiveAppBar />
         <Routes>
           <Route path="/" element={<Switch />} />
-          <Route path="Profile" element={<Profile />} />
+          <Route path="Teams" element={<TeamHistory />} />
+          <Route path="Chat" element={<Profile />} />
           <Route path="Credits" element={<Credits />} />
         </Routes>
 

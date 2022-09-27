@@ -5,8 +5,7 @@ export default function Profile() {
   //GET TEAM HISTORY DATA FROM DB AND MAP OVER
   return (
     <div className="poke-list">
-      <h1>Team History</h1>
-      {/*MAP TEAM HISTORY HERE FROM DB */}
+      <h1>Chat</h1>
     </div>
   )
 }
