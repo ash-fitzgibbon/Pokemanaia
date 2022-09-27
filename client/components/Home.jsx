@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
-import { useDispatch, useSelector } from 'react-redux'
-import { saveDbTeam, fetchTeam } from '../actions/myPokemon'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { saveDbTeam } from '../actions/myPokemon'
 import Team from './Team'
 import Pokemon from './Pokemon'
 const clickPop = new Audio('clickConf.mp3')
@@ -12,7 +11,6 @@ import TextField from '@mui/material/TextField'
 
 export default function Home(props) {
   const [pageList, setPokemonList] = useState([])
-
   const [pageLimit] = useState(151)
   const [pokeDex, setPokeDex] = useState([])
   const [team, setTeam] = useState([])
@@ -20,10 +18,8 @@ export default function Home(props) {
   const dispatch = useDispatch()
   const mapToggle = props.fn
   const [inputText, setInputText] = useState('')
-  const tempTeam = useSelector((state) => state.myPokemon)
 
   let inputHandler = (e) => {
-    //convert input text to lower case
     var lowerCase = e.target.value.toLowerCase()
     setInputText(lowerCase)
   }
@@ -79,10 +75,7 @@ export default function Home(props) {
     setTeam([])
     themeSongPlay()
   }
-  // function themeSongPlay() {
-  //   var audio = new Audio('themeSong.mp3')
-  //   audio.play()
-  // }
+
   function confirmTeam() {
     if (team.length != 0) {
       dispatch(saveDbTeam(team))
@@ -91,23 +84,13 @@ export default function Home(props) {
     }
   }
 
-  function getTeam() {
-    dispatch(fetchTeam())
-    console.log(tempTeam)
-  }
-
   const filteredData = pokeDex.filter((el) => {
-    //if no input the return the original
     if (inputText === '') {
       return el.name
-    }
-    //return the item which contains the user input
-    else {
+    } else {
       return el.name.toLowerCase().includes(inputText)
     }
   })
-
-  // getTeam()
 
   return (
     <div className="less-wide">
@@ -117,13 +100,7 @@ export default function Home(props) {
         max="100"
         onChange={(e) => setVolume((homeTheme.volume = e.target.value / 100))}
       ></input>
-      {/* {tempTeam.map((oldTeam) => {
-        return (
-          <div key={oldTeam.id}>
-            <p>{oldTeam.team}</p>
-          </div>
-        )
-      })} */}
+
       <h1>Choose your Pokémon!</h1>
       <div className="select">
         <div className="selectTeam">
@@ -148,7 +125,6 @@ export default function Home(props) {
       <div className="selectionGrid">
         <div className="poke-list">
           {filteredData.map((pokemon, element) => (
-            // <li key={item.name + element}>{item.name}</li>
             <div
               className="pokemon"
               key={pokemon.name + element}

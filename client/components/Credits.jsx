@@ -6,13 +6,18 @@ export default function Credits() {
   //Add disclaimer
   return (
     <div className="poke-list">
-      <h1>Credits</h1>
+      <h1>Credits/Disclaimer</h1>
+
+      <p>
+        This app was made with fair use in mind for educational purposes and all
+        rights belong to their respective owners. This app is not affiliated,
+        endorsed or supported by Nintendo in any way, some images used in this
+        app are copyrighted and supported under fair use, Pokemon and Pokemon
+        character names are trademarks of Nintendo.
+      </p>
       <ul>
         <li>Our de-facto team member - David</li>
-        <li>David</li>
-        <li>David</li>
-        <li>David</li>
-        <li>David</li>
+
         <li>
           Map maker - Flexible level editor Tiled - (https://www.mapeditor.org/){' '}
         </li>
@@ -25,7 +30,6 @@ export default function Credits() {
           Initial phaser code for map integration - Michael Hadley
           (https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6)
         </li>
-        <li>include links to sprite assets/imagery used and grabbed</li>
       </ul>
     </div>
   )

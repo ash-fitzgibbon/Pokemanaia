@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 import Start from './Start'
-import Battle from './Battle'
 import Footer from './Footer'
 import Profile from './Profile'
 import Credits from './Credits'
@@ -35,7 +34,6 @@ const App = () => {
           <Route path="Credits" element={<Credits />} />
         </Routes>
 
-        {/* <Home /> */}
         <Pair />
         <footer>
           <Footer />
