@@ -16,8 +16,10 @@
     "dev:socket": "nodemon --watch server server/socket.js",
     "build": "run-p build:client build:server",
     "build:client": "npm run webpack -- --mode production",
+    "build:server": "npm run knex -- migrate:latest",
     "lint": "eslint --ext .js,.jsx .",
     "webpack": "webpack --config ./client/webpack.config.js",
+    "knex": "knex --knexfile ./server/db/knexfile.js"
   },
   "babel": {
     "presets": [
@@ -46,7 +48,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "kill-port": "^2.0.1",
-    "knex": "^1.0.2",
     "pg": "^8.8.0",
     "phaser": "^3.55.2",
     "react-router": "^6.4.1",
