@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
-import { saveDbTeam } from '../actions/myPokemon'
+import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
 import Pokemon from './Pokemon'
 const clickPop = new Audio('clickConf.mp3')
@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField'
 
 export default function Home(props) {
   const [pageList, setPokemonList] = useState([])
+
   const [pageLimit] = useState(151)
   const [pokeDex, setPokeDex] = useState([])
   const [team, setTeam] = useState([])
@@ -78,12 +79,8 @@ export default function Home(props) {
 
   function confirmTeam() {
     if (team.length != 0) {
-      dispatch(saveDbTeam(team))
+      dispatch(returnTeam(team))
       mapToggle()
-<<<<<<< HEAD
-
-=======
->>>>>>> d941be5c9448b6bfe68e2612bec228486103ebf0
       homeTheme.pause()
     }
   }
